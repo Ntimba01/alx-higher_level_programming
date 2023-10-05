@@ -7,19 +7,20 @@
  * Return: 1 if there is a list cycle.
  * 	   0 if it doesn't have a list cycle
  */
+
 int check_cycle(listint_t *list)
 {
-	listint_t *fair = list;
-	listint_t *wonder = list;
+	listint_t *slow = list;
+	listint_t *fast = list;
 
 	if (!list)
 		return (0);
 
-	while (fair && wonder && wonder->next)
+	while (slow && fast && fast->next)
 	{
-		fair = fair->next;
-		wonder = wonder->next->next;
-		if (fair == wonder)
+		slow = slow->next;
+		fast = fast->next->next;
+		if (slow == fast)
 			return (1);
 	}
 
